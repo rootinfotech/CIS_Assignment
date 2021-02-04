@@ -1,0 +1,18 @@
+{% extends 'crudapp/base.html' %}
+{% block content %}
+<form method="post" novalidate>
+    {% csrf_token %}
+    <h2>Sign Up Form</h2>
+    <div class="container">
+    {% if messages %}
+        {% for msg in messages %}
+            <p {% if msg.tags %} class = "{{msg.tags}}"{% endif %}>{{ msg }}</p><br>
+        {% endfor %}
+    {% endif %}
+    </div>
+    {% for fm in form %}
+        <p>{{ fm.label_tag }}{{ fm }} {{fm.errors|striptags}}</p>
+    {% endfor %}
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

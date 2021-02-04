@@ -1,0 +1,19 @@
+{% extends 'crudapp/base.html'%}
+{% block content %}
+
+<table class="table">
+    <thead>
+        <th>Category ID</th>
+        <th>Category Name</th>
+    </thead>
+{% for cat in categories %}
+    <tr>
+        <td>{{cat.id}}</td>
+        <td>{{cat.name}}</td>
+        <td><a href="{% url 'update_category' cat.id %}"><button class="btn btn-warning">Update</button></a></td>
+        <td><a href="{% url 'delete_category' cat.id %}"><button class="btn btn-danger">Delete</button> </a></td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

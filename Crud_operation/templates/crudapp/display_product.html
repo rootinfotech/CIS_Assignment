@@ -1,0 +1,31 @@
+{% extends 'crudapp/base.html'%}
+{% block content %}
+
+<table class="table">
+    <thead>
+        <th>Product Name</th>
+        <th>Product tags</th>
+        <th>Product Images</th>
+        <th>Product Category</th>
+        <th>Product Description</th>
+    </thead>
+{% for product in products %}
+    <tr>
+        <td>{{product.product_name}}</td>
+
+        <td>{% for i in product.tags.all %}
+            {{i}}
+            {% endfor %}
+        </td>
+        <td>
+            <img src="{{product.image.url}}" alt="No Image" class="img-fluid" style="width:150px; height:250px">
+        </td>
+        <td>{{product.category}}</td>
+        <td>{{product.description}}</td>
+        <td><a href="{% url 'update_product' product.id %}"><button class="btn btn-warning">Update</button></a></td>
+        <td><a href="{% url 'delete_product' product.id %}"><button class="btn btn-danger">Delete</button> </a></td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'crudapp/base.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <h2>Log in</h2>
+    {% if form.non_field_errors %}
+        {% for erorr in form.non_field_errors %}
+            <p>{{ erorr }}</p>
+        {% endfor %}
+{% endif %}
+    {% for fm in form %}
+        <p>{{ fm.label_tag }} {{ fm }} {{fm.errors|striptags}}</p>
+    {% endfor %}
+ <input type="submit" value="Log In">
+</form>
+{% endblock %}
